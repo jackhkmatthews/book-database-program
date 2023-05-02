@@ -1,7 +1,14 @@
-from sqlalchemy import create_engine, Column, Integer, String, Date
-from sqlalchemy.orm import sessionmaker, declarative_base
+import logging
+import os
 
-engine = create_engine("sqlite:///books.db", echo=False)
+from dotenv import load_dotenv
+from sqlalchemy import Column, Date, Integer, String, create_engine
+from sqlalchemy.orm import declarative_base, sessionmaker
+
+load_dotenv()
+
+
+engine = create_engine(os.getenv("DATABASE_URL"), echo=False)
 Session = sessionmaker(bind=engine)
 session = Session()
 Base = declarative_base()
