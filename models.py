@@ -1,12 +1,14 @@
-import logging
 import os
 
 from dotenv import load_dotenv
 from sqlalchemy import Column, Date, Integer, String, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
+from logger import logger
+
 load_dotenv()
 
+logger.info(f'Creating engine with DATABASE_URL={os.getenv("DATABASE_URL")}')
 
 engine = create_engine(os.getenv("DATABASE_URL"), echo=False)
 Session = sessionmaker(bind=engine)

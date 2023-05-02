@@ -3,6 +3,7 @@ import datetime
 import time
 from typing import List
 
+from logger import logger
 from models import Base, Book, engine, session
 
 months = [
@@ -246,6 +247,8 @@ def app():
 
 
 if __name__ == "__main__":
+    logger.info("Started")
     Base.metadata.create_all(engine)
     add_csv()
     app()
+    logger.info("Finished")
